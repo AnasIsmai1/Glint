@@ -96,15 +96,12 @@ const observer = new IntersectionObserver( entries => {
 const conObserver = new IntersectionObserver( entries => {
     entries.forEach( entry => {
         entry.target.classList.toggle('show', entry.isIntersecting);
-        if(entry.isIntersecting) {
-            observer.unobserve(entry.target)
-        };
+        if(entry.isIntersecting)conObserver.unobserve(entry.target);
     })
-}, 
+},
 {
     threshold : .35,
-}
-)
+})
 
 
 const statObserver = new IntersectionObserver( entries => {
@@ -122,7 +119,6 @@ const statObserver = new IntersectionObserver( entries => {
     
                     let counter = setInterval(function(){
                         initValue += newSpeed;
-                        console.log(initValue);
                         heading.textContent = Math.floor(initValue);
                         if(initValue >= target-1) {
                             clearInterval(counter);
@@ -158,4 +154,4 @@ observer.observe(secFourHeading);
 observer.observe(scrollBar);
 observer.observe(secFiveSpan);
 observer.observe(secFiveHeading);
-observer.observe(formOne);
+conObserver.observe(formOne);
