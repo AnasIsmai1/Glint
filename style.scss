@@ -263,6 +263,8 @@ header {
         
     }
     .wrapper {
+        opacity: 0;
+        transition: 3s ease;
         .btn-grp {
             margin-top: 70px;
             @include flex-row();
@@ -289,10 +291,14 @@ header {
         }
         // position: relative;
     }
+    .show {
+            opacity: 1;
+            animation: SlideIn 2s ease ;
+    }
     .scroll-down {
         animation-name: bouncingAnimation;
         animation-duration: 1.4s;
-        animation-delay: 2s;
+        animation-delay: 3s;
         animation-timing-function: ease;
         position: absolute;
         bottom: -10%;
@@ -375,6 +381,32 @@ article {
     overflow: hidden;
 }
 
+@keyframes SlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(120%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@keyframes SlideInSpan {
+    from {
+        opacity: 0;
+        transform: translateY(800%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(30px);
+    }
+}
+
+.show {
+    animation: SlideIn 2s ease forwards;
+}
+
 #section-1 {
     height: 90dvh;
     background-color: $primary-clr;
@@ -385,18 +417,27 @@ article {
     align-items: center;
     text-align: center;
     span {
+        opacity: 0;
         transform: translateY(30px);
         margin: 0;
         font-weight: 700;
         letter-spacing: .25em;
         text-transform: uppercase;
     }
+
+    .sec-1-span.show {
+        opacity: 1;
+        animation: SlideInSpan 2s ease forwards;
+    }
+
     h2 {
+        opacity: 0;
         margin: 0;
         font-size: 5rem;
         color: $default-font-clr;
     }
-    p {
+    p { 
+        opacity: 0;
         line-height: 1.5em;
         width: 80%;
         margin: auto;
@@ -404,8 +445,8 @@ article {
         font-size: 1.5rem;
     }
     .stats {
+        opacity: 0;
         width: min(1500px,100%);
-        overflow: hidden;
         margin-top: 50px;
         align-self: center;
         display: grid;
@@ -422,6 +463,7 @@ article {
                 margin: 0;
             }
             p {
+                opacity: 1;
                 line-height: 1.5em;
                 width: 100%;
                 font-family: "Montserrat", sans-serif;
@@ -430,22 +472,8 @@ article {
                 font-size: 1rem;
             }
         }
-        // .stat::after {
-        //     position: absolute;
-        //     content: "";
-        //     background-color: white;
-        //     top: 0;
-        //     left: -25%;
-        //     height: 100%;
-        //     width: 1px;
-        // }
-        // .stat-1::after {
-        //     display: none;
-        // }
-        // .stat-4::after {
-        //     left: -50%;
-        // }
     }
+    
 }
 
 #section-2 {
@@ -460,13 +488,18 @@ article {
         align-items: center;
     }
     span {
+        opacity: 0;
         color: $primary-clr;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: .15em;
         transform: translateY(20px);
     }
+    .sec-2-span.show {
+        animation: SlideInSpan 2s ease forwards;
+    }
     h2 {
+        opacity: 0;
         font-weight: 650;
         width: 80%;
         margin: auto;
@@ -480,6 +513,7 @@ article {
         grid-template-columns: repeat(2,45%);
         gap: 10%;
         .box {
+            opacity: 0;
             margin-top: 20px;
             display: grid;
             grid-template-columns: 20% 80%;
@@ -493,7 +527,7 @@ article {
                 p {
                     line-height: 1.5em;
                     width: 100%;
-                    font-size: 1rem;
+                    font-size: 1.25rem;
                     font-family: serif;
                     color: #666;
                 }
@@ -558,13 +592,18 @@ article {
         align-items: center;
     }
     span {
+        opacity: 0;
         transform: translateY(20px);
         color: $primary-clr;
         text-transform: uppercase;
         font-weight: 700;
         letter-spacing: .15em;
     }
+    .sec-4-span.show {
+        animation: SlideInSpan 2s ease forwards;
+    }
     h2 {
+        opacity: 0;
         font-size: 3rem;
         width: 75%;
         margin: auto;
@@ -572,6 +611,8 @@ article {
         text-align: center;
     }
     .scroll-bar {
+        opacity: 0;
+        // border: #000 solid 2px;
         overflow: hidden;
         margin: 0 auto;
         margin-block: 50px;
@@ -709,13 +750,18 @@ article {
     background-blend-mode: saturation;
     background-attachment: fixed;
     span {
+        opacity: 0;
         color: $primary-clr;
         font-weight: 700;
         letter-spacing: .15em;
         transform: translateY(10px);
         text-transform: uppercase;
     }
+    .sec-5-span.show {
+        animation: SlideInSpan 2s ease forwads;
+    }
     h2 {
+        opacity: 0;
         width: 70%;
         margin: auto;
         font-weight: 600;
@@ -723,7 +769,7 @@ article {
         margin-bottom: 100px;
     }
     .contact-form {
-        // height: 85dvh;
+        opacity: 0;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -1278,6 +1324,15 @@ footer {
 }
 
 @media (max-width:600px) {
+    .show {
+        animation: none;
+    }
+    span, h2, p {
+        opacity: 1;
+    }
+    .hero-wrapper.show {
+        animation: none;
+    }
     .offscreen-menu {
         width: min(250px, 50%);
         h2 {
@@ -1310,6 +1365,9 @@ footer {
                 bottom: -20%;
             }
         }
+        .hero-wrapper.show {
+            animation: none;
+        }
         .socials {
             display: none;
         }
@@ -1317,18 +1375,26 @@ footer {
     #section-1 {
         .wrapper {
             span {
+                opacity: 1;
                 font-size: 1rem;
             }
+            .sec-1-span.show {
+                animation: none;
+            }
             h2 {
+                opacity: 1;
                 margin-top: 10px;
                 font-size: clamp(1.95rem, 2rem, 2.25rem);
             }
             p {
+                opacity: 1;
                 font-size: 1.25rem;
             }
             .stats {
+                opacity: 1;
                 .stat-grp {
                     .stat {
+                        opacity: 1;
                         h3 {
                             font-size: clamp(3rem, 3.5rem, 4rem);
                         }
@@ -1343,15 +1409,35 @@ footer {
     #section-2 {
         .wrapper {
             h2 {
+                opacity: 1;
                 font-size: clamp(1.5rem, 1.75rem, 1.9rem);
+            }
+            span {
+                opacity: 1;
+            }
+            .sec-2-span.show {
+                animation: none;
+            }
+            .box {
+                opacity: 1;
             }
         }
     }
     #section-4 {
         .wrapper {
+            span {
+                opacity: 1;
+            }
+            .sec-4-span.show {
+                animation: none;
+            }
             h2 {
+                opacity: 1;
                 font-size: clamp(1.5rem, 1.75rem, 2rem);
             }
+        }
+        .scroll-bar {
+            opacity: 1;
         }
         .testimonials {
             max-width: 80%;
@@ -1364,10 +1450,18 @@ footer {
         .wrapper {
             width: 100%;
             padding-inline: 0;
+            span {
+                opacity: 1;
+            }
+            .sec-5-span.show {
+                animation: none;
+            }
             h2 {
+                opacity: 1;
                 font-size: clamp(1.95rem, 2rem, 2.25rem);
             }
             .contact-form {
+                opacity: 1;
                 width: 95%;
             }
         }

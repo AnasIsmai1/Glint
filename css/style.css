@@ -243,6 +243,10 @@ header .menu.active p {
   background-position: center center;
   background-size: cover;
 }
+#hero-section .wrapper {
+  opacity: 0;
+  transition: 3s ease;
+}
 #hero-section .wrapper .btn-grp {
   margin-top: 70px;
   display: flex;
@@ -268,10 +272,14 @@ header .menu.active p {
   color: black;
   mix-blend-mode: screen;
 }
+#hero-section .show {
+  opacity: 1;
+  animation: SlideIn 2s ease;
+}
 #hero-section .scroll-down {
   animation-name: bouncingAnimation;
   animation-duration: 1.4s;
-  animation-delay: 2s;
+  animation-delay: 3s;
   animation-timing-function: ease;
   position: absolute;
   bottom: -10%;
@@ -351,6 +359,30 @@ article {
   overflow: hidden;
 }
 
+@keyframes SlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(120%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes SlideInSpan {
+  from {
+    opacity: 0;
+    transform: translateY(800%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+}
+.show {
+  animation: SlideIn 2s ease forwards;
+}
+
 #section-1 {
   height: 90dvh;
   background-color: #39b54a;
@@ -362,18 +394,25 @@ article {
   text-align: center;
 }
 #section-1 span {
+  opacity: 0;
   transform: translateY(30px);
   margin: 0;
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
 }
+#section-1 .sec-1-span.show {
+  opacity: 1;
+  animation: SlideInSpan 2s ease forwards;
+}
 #section-1 h2 {
+  opacity: 0;
   margin: 0;
   font-size: 5rem;
   color: #fff;
 }
 #section-1 p {
+  opacity: 0;
   line-height: 1.5em;
   width: 80%;
   margin: auto;
@@ -381,8 +420,8 @@ article {
   font-size: 1.5rem;
 }
 #section-1 .stats {
+  opacity: 0;
   width: min(1500px, 100%);
-  overflow: hidden;
   margin-top: 50px;
   align-self: center;
   display: grid;
@@ -401,6 +440,7 @@ article {
   margin: 0;
 }
 #section-1 .stats .stat p {
+  opacity: 1;
   line-height: 1.5em;
   width: 100%;
   font-family: "Montserrat", sans-serif;
@@ -421,13 +461,18 @@ article {
   align-items: center;
 }
 #section-2 span {
+  opacity: 0;
   color: #39b54a;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   transform: translateY(20px);
 }
+#section-2 .sec-2-span.show {
+  animation: SlideInSpan 2s ease forwards;
+}
 #section-2 h2 {
+  opacity: 0;
   font-weight: 650;
   width: 80%;
   margin: auto;
@@ -442,6 +487,7 @@ article {
   gap: 10%;
 }
 #section-2 .cols .box {
+  opacity: 0;
   margin-top: 20px;
   display: grid;
   grid-template-columns: 20% 80%;
@@ -457,7 +503,7 @@ article {
 #section-2 .cols .box .deets p {
   line-height: 1.5em;
   width: 100%;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-family: serif;
   color: #666;
 }
@@ -506,13 +552,18 @@ article {
   align-items: center;
 }
 #section-4 span {
+  opacity: 0;
   transform: translateY(20px);
   color: #39b54a;
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.15em;
 }
+#section-4 .sec-4-span.show {
+  animation: SlideInSpan 2s ease forwards;
+}
 #section-4 h2 {
+  opacity: 0;
   font-size: 3rem;
   width: 75%;
   margin: auto;
@@ -520,6 +571,7 @@ article {
   text-align: center;
 }
 #section-4 .scroll-bar {
+  opacity: 0;
   overflow: hidden;
   margin: 0 auto;
   margin-block: 50px;
@@ -648,13 +700,18 @@ article {
   background-attachment: fixed;
 }
 #section-5 span {
+  opacity: 0;
   color: #39b54a;
   font-weight: 700;
   letter-spacing: 0.15em;
   transform: translateY(10px);
   text-transform: uppercase;
 }
+#section-5 .sec-5-span.show {
+  animation: SlideInSpan 2s ease forwads;
+}
 #section-5 h2 {
+  opacity: 0;
   width: 70%;
   margin: auto;
   font-weight: 600;
@@ -662,6 +719,7 @@ article {
   margin-bottom: 100px;
 }
 #section-5 .contact-form {
+  opacity: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1164,6 +1222,15 @@ footer .footer-end .part-1:after {
   }
 }
 @media (max-width: 600px) {
+  .show {
+    animation: none;
+  }
+  span, h2, p {
+    opacity: 1;
+  }
+  .hero-wrapper.show {
+    animation: none;
+  }
   .offscreen-menu {
     width: min(250px, 50%);
   }
@@ -1193,18 +1260,33 @@ footer .footer-end .part-1:after {
   #hero-section .wrapper .scroll-down {
     bottom: -20%;
   }
+  #hero-section .hero-wrapper.show {
+    animation: none;
+  }
   #hero-section .socials {
     display: none;
   }
   #section-1 .wrapper span {
+    opacity: 1;
     font-size: 1rem;
   }
+  #section-1 .wrapper .sec-1-span.show {
+    animation: none;
+  }
   #section-1 .wrapper h2 {
+    opacity: 1;
     margin-top: 10px;
     font-size: 2rem;
   }
   #section-1 .wrapper p {
+    opacity: 1;
     font-size: 1.25rem;
+  }
+  #section-1 .wrapper .stats {
+    opacity: 1;
+  }
+  #section-1 .wrapper .stats .stat-grp .stat {
+    opacity: 1;
   }
   #section-1 .wrapper .stats .stat-grp .stat h3 {
     font-size: 3.5rem;
@@ -1213,10 +1295,30 @@ footer .footer-end .part-1:after {
     margin-top: 10px;
   }
   #section-2 .wrapper h2 {
+    opacity: 1;
     font-size: 1.75rem;
   }
+  #section-2 .wrapper span {
+    opacity: 1;
+  }
+  #section-2 .wrapper .sec-2-span.show {
+    animation: none;
+  }
+  #section-2 .wrapper .box {
+    opacity: 1;
+  }
+  #section-4 .wrapper span {
+    opacity: 1;
+  }
+  #section-4 .wrapper .sec-4-span.show {
+    animation: none;
+  }
   #section-4 .wrapper h2 {
+    opacity: 1;
     font-size: 1.75rem;
+  }
+  #section-4 .scroll-bar {
+    opacity: 1;
   }
   #section-4 .testimonials {
     max-width: 80%;
@@ -1228,10 +1330,18 @@ footer .footer-end .part-1:after {
     width: 100%;
     padding-inline: 0;
   }
+  #section-5 .wrapper span {
+    opacity: 1;
+  }
+  #section-5 .wrapper .sec-5-span.show {
+    animation: none;
+  }
   #section-5 .wrapper h2 {
+    opacity: 1;
     font-size: 2rem;
   }
   #section-5 .wrapper .contact-form {
+    opacity: 1;
     width: 95%;
   }
   footer .wrapper {
