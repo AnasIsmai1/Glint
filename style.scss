@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     box-sizing: border-box;
 }
 
 $default-font-clr: #fff;
 $primary-clr: #39b54a;
+$line-color: #ffffff3a;
 
 @mixin flex-row {
     display: flex;
@@ -207,15 +210,6 @@ header {
     transform: translateY(0) translateZ(0);
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0,0, .7);
-}
 
 @keyframes bouncingAnimation {
     0%,100% {
@@ -236,7 +230,21 @@ header {
     90% {
         transform: translateY(-50%);
     }
+    
+}
 
+h2 {
+    position: relative;
+}
+.heading-line {
+    position: absolute;
+    height: 1px;
+    width: 40%;
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 18dvh;
+    background-color: $line-color;
 }
 
 #hero-section {
@@ -261,6 +269,15 @@ header {
         background-position: center center;
         background-size: cover;
         
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0,0, .7);
     }
     .wrapper {
         opacity: 0;
@@ -445,6 +462,7 @@ article {
         font-size: 1.825rem;
     }
     .stats {
+        position: relative;
         opacity: 0;
         width: min(1500px,100%);
         margin-top: 50px;
@@ -452,8 +470,23 @@ article {
         display: grid;
         grid-template-columns: repeat(2, 50%);
         .stat-grp {
+            position: relative;
             display: grid;
             grid-template-columns: repeat(2, 50%);
+            .line {
+                position: absolute;
+                width: 1px;
+                background-color: #ffffff3a;
+                height: 100%;
+                left: 50%;
+            }
+        }
+        .line {
+            position: absolute;
+            width: 1px;
+            background-color: #ffffff3a;
+            height: 100%;
+            left: 50%;
         }
         .stat {
             position: relative;
@@ -479,6 +512,7 @@ article {
 #section-2 {
     // height: 135dvh;
     background-color: #fff;
+    position: relative;
     color: #000;
     .wrapper {
         padding-block: 10em;
@@ -486,6 +520,9 @@ article {
         justify-content: center;
         flex-direction: column;
         align-items: center;
+        .heading-line {
+            background-color: #c9c9c957;
+        }
     }
     span {
         opacity: 0;
@@ -506,6 +543,9 @@ article {
         margin: 0;
         font-size: 2.95rem;
         text-align: center;
+    }
+    .heading-line {
+        top: 43dvh;
     }
     .cols {
         margin-top: 100px;
@@ -571,11 +611,138 @@ article {
     animation-delay: calc((15 / 9) * (9 - $number) * -1s);
 }
 
+@keyframes slideInSpan {
+    from {
+        opacity: 0;
+        transform: translateY(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 #section-3 {
     text-align: center;
     .box-1 {
-        height: 40vh;
-        background-color: #333;
+        position: relative;
+        padding-block: 150px;
+        height: 60vh;
+        background-color: #111;
+        .heading-line {
+            top: 300px;
+            width: 400px;
+        }
+        span {
+            opacity: 0;
+            color: $primary-clr;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: .15em;
+            font-size: 1rem;
+        }
+        .sec-3-span.show {
+            opacity: 1;
+            animation: slideInSpan 2s ease;
+        }
+        h2 {
+            opacity: 0;
+            font-size: 3rem;
+            margin: auto;
+            font-weight: 600;
+            text-align: center;
+        }
+    }
+    .box-2 {
+        .imgs {
+            margin: auto;
+            width: min(1200px, 90%);
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            transform: translateY(-200px);
+            .col {
+                position: relative;
+                img {
+                    width: 100%;
+                    position: relative;
+                }
+                img::after {
+                    content: "text";
+                    position: absolute;
+                    z-index: 10;
+                    top:0;
+                    left: 0;
+                    background-color: rgba(0,0,0,.3);
+                }
+                .img {
+                    opacity: 0;
+                    cursor: pointer;
+                    position: relative;
+                    .overlay {
+                        overflow: hidden;
+                        font-family: "Montserrat", sans-serif;
+                        opacity: 0;
+                        position: absolute;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color:rgba(0,0,0,0.7);
+                        transition: .5s ease;
+
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-end;
+                        align-items: flex-start;
+                        padding: 2rem 2.5rem;
+                        .Info {
+                            transition: .5s ease;
+                            transform: translateY(200%);
+                            text-align: left;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                            .name {
+                                font-weight: 700;
+                            }
+                        }
+                        i {
+                            position: absolute;
+                            top: -2rem;
+                            left:
+                            2.5rem;
+                            border: 1px #fff solid;
+                            border-radius: 50%;
+                            padding: .5rem;
+                            transition: .5s ease;
+                        }
+                        .line {
+                            position: absolute;
+                            top:-4rem;
+                            left: 3.5rem;
+                            content: "";
+                            height: 2rem;
+                            width: 1px;
+                            background-color: #fff;
+                            transition: .5s ease;
+                        }
+                    }
+                    .overlay:hover {
+                        opacity: 1;
+                        .Info {
+                            transform: translateY(0);
+                        }
+                        i {
+                            top: 2rem;
+                        }
+                        .line {
+                            top: 0rem;
+                        }
+                    }
+                }
+            }
+        }
+        
     }
 }
 
@@ -697,7 +864,7 @@ article {
         gap: 50px;
         text-align: center;
         .test {
-            padding: 1rem 1.5rem;
+            padding: 1rem 2.5rem;
             position: relative;
             margin: auto;
             max-width: 100%;
@@ -786,6 +953,7 @@ article {
             width: 150px;
             background-color: #666;
             .circle {
+                color: transparent;
                 cursor: pointer;
                 border: #ccc solid 1px;
                 border-radius: 50%;
@@ -799,7 +967,7 @@ article {
                 width: 40px;
                 border-radius: 2rem;
                 background-color: #fff;
-                color: #fff;
+                color: transparent;
             }
         }
         .arrows {
@@ -1141,6 +1309,9 @@ footer {
         h2 {
             font-size: 3.5rem;
         }
+        .heading-line {
+            top:15dvh;
+        }
         p {
             width: 100%;
             font-size: 1.25rem;
@@ -1156,18 +1327,15 @@ footer {
                 position: relative;
                 width: 80%;
                 align-self: center;
-                .stat:first-child::after {
-                    display: none;
+                .line {
+                    display: block;
+                    height: 90%;
                 }
             }
-            .stat-grp::after {
-                position: absolute;
-                top: 0;
-                left: 0;
-                background-color: white;
-                height: 100%;
-                width: 1px;
+            .line {
+                display: none;
             }
+            
             
         }
     }
@@ -1178,6 +1346,9 @@ footer {
             h2 {
                 font-size: 2.75rem;
                 width: 100%;
+            }
+            .heading-line {
+                top: 30dvh;
             }
             .cols {
                 margin-top: 50px;
@@ -1268,6 +1439,9 @@ footer {
                 .stat {
                     margin-top: 50px;    
                 }
+                .line {
+                    display: none;
+                }
             }
             .stat-grp:first-child {
                 .stat:first-child {
@@ -1282,6 +1456,9 @@ footer {
             h2 {
                 width: 90%;
                 font-size: 2.25rem;
+            }
+            .heading-line {
+                top: 30dvh;
             }
         }
         .cols {
@@ -1314,6 +1491,21 @@ footer {
             }
         }
     }
+
+    #section-3 {
+        .heading-line {
+            width: 80%;
+        }
+        .box-1 {
+            span {
+                font-size: clamp(1rem, 1.075rem, 1.25rem);
+            }
+            h2 {
+                font-size: clamp(1rem, 2.25rem, 3rem);
+            }
+        }
+    }
+
     #section-4 {
         .wrapper {
             h2 {
@@ -1460,7 +1652,7 @@ footer {
         .wrapper {
             span {
                 opacity: 1;
-                font-size: 1rem;
+                font-size: .825rem;
             }
             .sec-1-span.show {
                 animation: none;
@@ -1468,7 +1660,11 @@ footer {
             h2 {
                 opacity: 1;
                 margin-top: 10px;
-                font-size: clamp(1.95rem, 2rem, 2.25rem);
+                font-size: clamp(1.95rem, 2.25rem, 2.5rem);
+            }
+            .heading-line {
+                top: 13dvh;
+                width: 60%;
             }
             p {
                 opacity: 1;
@@ -1496,6 +1692,10 @@ footer {
                 opacity: 1;
                 font-size: clamp(1.5rem, 1.75rem, 1.9rem);
             }
+            .heading-line {
+                top: 30dvh;
+                width: 80%;
+            }
             span {
                 opacity: 1;
             }
@@ -1504,6 +1704,36 @@ footer {
             }
             .box {
                 opacity: 1;
+            }
+        }
+    }
+    #section-3 {
+        .box-1 {
+            span {
+                opacity: 1;
+                font-size: .9rem
+            }
+            .sec-3-span.show {
+                animation: none;
+            }
+            h2 {
+                opacity: 1;
+                font-size: clamp(1rem, 1.35rem, 2rem);
+            }
+            .heading-line {
+                top: 255px;
+                width: 80%;
+            }
+        }
+        .box-2 {
+            .imgs {
+                display: flex;
+                flex-direction: column;
+                .col {
+                    .img {
+                        opacity: 1;
+                    }
+                }
             }
         }
     }
@@ -1526,16 +1756,20 @@ footer {
         .testimonials {
             width: 80%;
             p {
-                font-size: clamp(1rem, 1.25rem, 1.5rem);
-            }
-            .test__1.author {
-                padding-block-start: 20px;
-                padding-block-end: 50px;
+                font-size: clamp(.825rem, 1rem, 1.15rem);
             }
             .test {
                 p {
                     padding-block-start: 20px;
                 }
+            }
+            .author {
+                padding-block-start: 10px;
+                
+            }
+            .test__1 .author {
+                padding-block-start: 20px;
+                padding-block-end: 50px;
             }
         }
         .test__bottom {

@@ -17,6 +17,8 @@ const secOnePara = document.querySelector('.sec-1-p');
 const secTwoSpan = document.querySelector('.sec-2-span');
 const secTwoHeading = document.querySelector('.sec-2-h2');
 const boxes = document.querySelectorAll('.box');
+const secThreeSpan = document.querySelector('.sec-3-span');
+const secThreeHeading = document.querySelector('.sec-3-h2');
 const secFourSpan = document.querySelector('.sec-4-span');
 const secFourHeading = document.querySelector('.sec-4-h2');
 const scrollBar = document.querySelector('.scroll-bar');
@@ -25,6 +27,7 @@ const secFiveHeading = document.querySelector('.sec-5-h2');
 const arrowLeft = document.getElementById('arrow-left');
 const arrowRight = document.getElementById('arrow-right');
 const circles = document.querySelectorAll('.circle');
+const img = document.querySelectorAll('.img');
 
 let emailValid = false;
 let statShow = false;
@@ -146,12 +149,18 @@ boxes.forEach( box => {
     observer.observe(box);
 })
 
+img.forEach(i => {
+    conObserver.observe(i);
+})
+
 observer.observe(heroWrapper);
 observer.observe(secOneSpan);
 observer.observe(secOneHeading);
 observer.observe(secOnePara);
 observer.observe(secTwoSpan);
 observer.observe(secTwoHeading);
+observer.observe(secThreeSpan);
+observer.observe(secThreeHeading);
 observer.observe(secFourSpan);
 observer.observe(secFourHeading);
 observer.observe(scrollBar);
