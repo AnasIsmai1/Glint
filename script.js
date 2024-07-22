@@ -22,6 +22,9 @@ const secFourHeading = document.querySelector('.sec-4-h2');
 const scrollBar = document.querySelector('.scroll-bar');
 const secFiveSpan = document.querySelector('.sec-5-span');
 const secFiveHeading = document.querySelector('.sec-5-h2'); 
+const arrowLeft = document.getElementById('arrow-left');
+const arrowRight = document.getElementById('arrow-right');
+const circles = document.querySelectorAll('.circle');
 
 let emailValid = false;
 let statShow = false;
@@ -100,7 +103,7 @@ const conObserver = new IntersectionObserver( entries => {
     })
 },
 {
-    threshold : .35,
+    threshold : .25,
 })
 
 
@@ -129,7 +132,7 @@ const statObserver = new IntersectionObserver( entries => {
     })
 }, 
 {
-    threshold : .65,
+    threshold : .45,
 }
 )
 
@@ -155,3 +158,101 @@ observer.observe(scrollBar);
 observer.observe(secFiveSpan);
 observer.observe(secFiveHeading);
 conObserver.observe(formOne);
+
+
+const tests = document.querySelectorAll('.test');
+
+arrowLeft.addEventListener('click', () => {
+    testSliderPrev();
+})
+arrowRight.addEventListener('click', () => {
+    testSliderNext();
+})
+
+var testId;
+
+
+function getCurrentTest() {
+    tests.forEach( t => {
+        const tStyle = window.getComputedStyle(t);
+        // console.log(tStyle);
+        if(!(tStyle.getPropertyValue("display") == 'none')) {
+            // console.log(t);
+            testId = t.getAttribute('data-test');
+            testId = testId;
+
+        }
+    })
+}
+
+function testSliderNext() {
+    getCurrentTest();
+    let tempId = testId;
+
+    if(tempId == 3) {
+        checkClicked();
+        let tempTest = document.querySelector(`.test__${tempId}`);
+        tempTest.classList.remove('show');
+        tempId = 1;
+        tempTest = document.querySelector(`.test__${tempId}`);
+        testCircle = document.getElementById(`circle${tempId}`);
+        testCircle.classList.add('clicked');
+        tempTest.classList.add('show');
+    }else {
+        checkClicked();
+        let tempTest = document.querySelector(`.test__${tempId}`);
+        tempTest.classList.remove('show');
+        tempId++;
+        tempTest = document.querySelector(`.test__${tempId}`);
+        testCircle = document.getElementById(`circle${tempId}`);
+        testCircle.classList.add('clicked');
+        tempTest.classList.add('show');
+    }
+}
+
+function testSliderPrev() {
+    getCurrentTest();
+    let tempId = testId;
+
+    if(tempId == 1) {
+        checkClicked();
+        let tempTest = document.querySelector(`.test__${tempId}`);
+        tempTest.classList.remove('show');
+        tempId = 3;
+        tempTest = document.querySelector(`.test__${tempId}`);
+        testCircle = document.getElementById(`circle${tempId}`);
+        testCircle.classList.add('clicked');
+        tempTest.classList.add('show');
+    }else {
+        checkClicked();
+        let tempTest = document.querySelector(`.test__${tempId}`);
+        tempTest.classList.remove('show');
+        tempId--;
+        tempTest = document.querySelector(`.test__${tempId}`);
+        testCircle = document.getElementById(`circle${tempId}`);
+        testCircle.classList.add('clicked');
+        tempTest.classList.add('show');
+    }
+}
+
+function checkClicked() {
+    circles.forEach( circle => {
+        circle.classList.remove('clicked');
+    })
+}
+
+circles.forEach( circle => {
+    
+    circle.addEventListener('click',() => {
+        checkClicked();
+        getCurrentTest();
+        let tempId1 = testId;
+        let tempTest = document.querySelector(`.test__${tempId1}`);
+        tempTest.classList.remove('show');
+
+        circle.classList.add('clicked');
+        let tempId2 = circle.getAttribute('data-test-link');
+        tempTest = document.querySelector(`.test__${tempId2}`);
+        tempTest.classList.add('show');
+    })
+})

@@ -408,7 +408,7 @@ article {
 }
 
 #section-1 {
-    height: 90dvh;
+    height: 95dvh;
     background-color: $primary-clr;
     color: #000;
     display: flex;
@@ -442,7 +442,7 @@ article {
         width: 80%;
         margin: auto;
         font-family: serif;
-        font-size: 1.5rem;
+        font-size: 1.825rem;
     }
     .stats {
         opacity: 0;
@@ -527,7 +527,7 @@ article {
                 p {
                     line-height: 1.5em;
                     width: 100%;
-                    font-size: 1.25rem;
+                    font-size: 1.35rem;
                     font-family: serif;
                     color: #666;
                 }
@@ -586,6 +586,7 @@ article {
     background-color: #ddd;
     color: #000;
     padding-block: 100px;
+    padding-block-end: 200px;
     .wrapper {
         display: flex;
         flex-direction: column;
@@ -677,31 +678,43 @@ article {
     .scroll-bar:hover i {
         animation-play-state: paused!important;
     }
+    .test__slider {
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
 
     .testimonials {
+        background-color: #fff;
+        border-radius: 30px;
         overflow: hidden;
         align-self: center;
         position: relative;
         margin-top: 100px;
-        max-width: 700px;
+        width: min(800px, 90%);
         display: flex;
         justify-content: space-between;
+        gap: 50px;
         text-align: center;
         .test {
-            position: absolute;
+            padding: 1rem 1.5rem;
+            position: relative;
             margin: auto;
             max-width: 100%;
+            max-height: 800px;
         }
         p {
             line-height: 1.5em;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             color: #666;
         }
         .author {
+            padding-block: 50px;
             display: flex;
             flex-direction: column;
             align-items: center;
             .pfp {
+                border: #5757575b solid 1px;
                 overflow: clip;
                 width: 100px;
                 height: 100px;
@@ -709,6 +722,9 @@ article {
                 img {
                     width: 100%;
                 }
+            }
+            span {
+                opacity: 1;
             }
             .name {
                 display: inline-block;
@@ -727,11 +743,81 @@ article {
             }
         }
         .test__1 {
+            display: none;
             position: relative;
-            left: -100%
+            left: -0%;
+            .author {
+                padding-bottom: 20px;
+            }
+        }
+        .test__2 {
+            display: none;
+            left: 0%;
+            top: 0;
         }
         .test__3 {
-            left: 100%;
+            display: none;
+            left: 0%;
+        }
+        .show {
+            display: unset;
+            animation: none;
+        }
+    }
+    .test__bottom {
+        position: absolute;
+        width: min(800px, 90%);
+        height: fit;
+        bottom: -60px;
+        left:50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .slider {
+            z-index: 10;
+            transform: translateY(-2%);
+            display: flex;
+            border-radius: 1.25rem;
+            gap: 10px;
+            justify-content: center;
+            color: #ccc;
+            padding: .75rem 1.5rem;
+            width: 150px;
+            background-color: #666;
+            .circle {
+                cursor: pointer;
+                border: #ccc solid 1px;
+                border-radius: 50%;
+                height: 20px;
+                aspect-ratio: 1 / 1;
+                background-color: #ccc;
+                transition: .2s ease;
+            }
+            .clicked {
+                height: 20px;
+                width: 40px;
+                border-radius: 2rem;
+                background-color: #fff;
+                color: #fff;
+            }
+        }
+        .arrows {
+            display: flex;
+            gap: 20px;
+            .arrow {
+                cursor: pointer;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #666;
+                height: 3rem;
+                aspect-ratio: 1 / 1;
+                i {
+                    color: #fff;
+                }
+            } 
         }
     }
 
@@ -1106,11 +1192,6 @@ footer {
                 width: 100%;
             }
         }
-        .testimonials {
-            p {
-                font-size: clamp(.825rem, 1rem, 1.25rem);
-            }
-        }
     }
     #section-5 {
         .wrapper {
@@ -1239,6 +1320,9 @@ footer {
                 font-size: 2rem;
             }
         }
+        .testimonials {
+            font-size: clamp(1.25rem, 1.5rem, 1.75rem);
+        }
     }
     #section-5 {
         .contact-form {
@@ -1257,7 +1341,7 @@ footer {
                 text-align: center;
                 width: 100%;
                 .input-field {
-                    width: 90%;
+                    width: 100%;
                 }
             }
             .box-2 {
@@ -1296,7 +1380,7 @@ footer {
                 }
             }
             .input-field {
-                width: 60%;
+                width: 100%;
                 margin: auto;
                 margin-top: 20px;
                 display: flex;
@@ -1440,10 +1524,22 @@ footer {
             opacity: 1;
         }
         .testimonials {
-            max-width: 80%;
+            width: 80%;
             p {
-                font-size: clamp(.825rem, 1rem, 1.25rem);
+                font-size: clamp(1rem, 1.25rem, 1.5rem);
             }
+            .test__1.author {
+                padding-block-start: 20px;
+                padding-block-end: 50px;
+            }
+            .test {
+                p {
+                    padding-block-start: 20px;
+                }
+            }
+        }
+        .test__bottom {
+            width: 80%;
         }
     }
     #section-5 {
